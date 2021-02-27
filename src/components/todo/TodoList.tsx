@@ -1,7 +1,7 @@
 import React from 'react';
 import {useObserver} from 'mobx-react';
 
-import useStore from '../useStore';
+import useStore from '../../core/mobx/useStore';
 import TodoItem from './TodoItem';
 
 const TodoList = () => {

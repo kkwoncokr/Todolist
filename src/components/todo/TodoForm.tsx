@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useStore from '../useStore';
+import useStore from '../../core/mobx/useStore';
 
 const TodoForm = () => {
     const {todo} = useStore();
@@ -9,16 +9,20 @@ const TodoForm = () => {
         e.preventDefault();
         console.log(todo);
         todo.addTodo(content);
+        setContent('');
     }
 
     const onChangeContent = (e:React.ChangeEvent<HTMLInputElement>) => {
         setContent(e.target.value);
     }
     return(
-        <form onSubmit={onSubmit}>
-            <input type="text" onChange={onChangeContent} value={content} placeholder="내용"/>
-            <button type="submit">입력</button>
-        </form>
+        <>
+            <h2 className="mainTitle">kkwon <br/>Todos</h2>
+            <form onSubmit={onSubmit} className="addForm">
+                <input type="text" onChange={onChangeContent} value={content} placeholder="내용"/>
+                <button type="submit">입력</button>
+            </form>
+        </>
     );
 }
 

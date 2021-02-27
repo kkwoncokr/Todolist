@@ -1,15 +1,10 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import TodoForm from './component/TodoForm';
-import TodoList from './component/TodoList';
+import Routes from './core/routes/Routes';
 
 function App() {
   return (
-    <>
-    <TodoForm/>
-    <TodoList/>
-    </>
+    <Routes/>
   );
 }
 
