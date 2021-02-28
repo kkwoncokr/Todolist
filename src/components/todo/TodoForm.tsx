@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import { useObserver } from 'mobx-react';
+import React, { useEffect, useState } from 'react';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import useStore from '../../core/mobx/useStore';
 
-const TodoForm = () => {
-    const {todo} = useStore();
+const TodoForm = ({history}:RouteComponentProps) => {
+    const {todo,auth} = useStore();
     const [content, setContent] = useState('');
 
     const onSubmit = (e:React.FormEvent) => {
@@ -11,13 +13,22 @@ const TodoForm = () => {
         todo.addTodo(content);
         setContent('');
     }
+    useEffect(()=> {
+        if(auth.userData.email === '') {
+            history.push('/login')
+        }
+    },[auth.userData])
 
+    const handleLogout = () => {
+        auth.logout();
+    }
     const onChangeContent = (e:React.ChangeEvent<HTMLInputElement>) => {
         setContent(e.target.value);
     }
-    return(
+    return useObserver(() =>
         <>
-            <h2 className="mainTitle">kkwon <br/>Todos</h2>
+            <h2 className="mainTitle">{auth.userData.email} <br/>Todos</h2>
+            <button type="button" className="logoutBtn" onClick={handleLogout}>Log out</button>
             <form onSubmit={onSubmit} className="addForm">
                 <input type="text" onChange={onChangeContent} value={content} placeholder="내용"/>
                 <button type="submit">입력</button>
@@ -26,4 +37,4 @@ const TodoForm = () => {
     );
 }
 
-export default TodoForm;
+export default withRouter(TodoForm);

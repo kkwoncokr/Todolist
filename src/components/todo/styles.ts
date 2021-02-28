@@ -12,6 +12,26 @@ export const TodoContents = styled.article`
     padding:50px 0;
     box-sizing:border-box;
     font-family: 'Ubuntu', sans-serif;
+    position:relative;
+
+    .logoutBtn {
+        background-color:#fff;
+        border:none;
+        outline:none;
+        padding:8px;
+        border-radius:5px;
+        color:#9da6c9;
+        letter-spacing:-1.5px;
+        cursor:pointer;
+        position:absolute;
+        right:0;
+        top:0;
+        border:1px solid #9da6c9;
+        &:hover {
+            background-color:#9da6c9;
+            color:#fff;
+        }
+    }
 
     h2.mainTitle {
         text-align:center;

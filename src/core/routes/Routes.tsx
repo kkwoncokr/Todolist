@@ -1,12 +1,15 @@
 import React from 'react';
-import {Switch,Route} from 'react-router-dom';
+import {Switch,Route, Redirect} from 'react-router-dom';
+import LoginIndex from '../../components/login';
 import todoIndex from '../../components/todo';
 
 
 const Routes = () => {
     return(
             <Switch>
-                <Route path='/' component={todoIndex} exact></Route>
+                <Route path="/login" component={LoginIndex} />
+                <Route path='/' component={todoIndex} exact />
+                <Redirect path="*" to="/" exact/> 
             </Switch>
     );
 }
