@@ -5,10 +5,14 @@ import useStore from '../../core/mobx/useStore';
 
 const TodoForm = ({history}:RouteComponentProps) => {
     const {todo,auth} = useStore();
-    const [content, setContent] = useState('');
+    const [content, setContent] = useState<string>('');
 
     const onSubmit = (e:React.FormEvent) => {
         e.preventDefault();
+        if(content === '') {
+            alert('내용을 입력하세요.')
+            return;
+        }
         console.log(todo);
         todo.addTodo(content);
         setContent('');

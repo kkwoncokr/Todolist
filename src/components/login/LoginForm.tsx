@@ -1,11 +1,12 @@
 import React, { useState }  from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
+import { UserData } from '../../core/mobx/stores/auth';
 import useStore from '../../core/mobx/useStore';
 import {LoginWrap,LoginContent} from './styles';
 
 const LoginForm = ({history}:RouteComponentProps) => {
     const {auth} = useStore();
-    const [userData, setUserData] = useState({
+    const [userData, setUserData] = useState<UserData>({
         email:'',
         password:'',
     })
